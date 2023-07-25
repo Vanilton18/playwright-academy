@@ -1,0 +1,10 @@
+[flake8]
+
+#Ignorar um aviso ou erro específico para ignorar:
+extend-ignore = E203
+#Ignorar a verificação nessas pastas
+exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,venv
+#Valor máximo de complexidade ciclomática permitido para um bloco de código.
+max-complexity = 10
+#Quantidade de caracteres por linha
+max-line-length = 120

@@ -1,0 +1,17 @@
+from playwright.sync_api import sync_playwright, expect
+
+browser = sync_playwright().start().chromium.launch(headless=False)
+expect.set_options(timeout=10_000)
+context = browser.new_context()
+page = context.new_page()
+page.goto("https://vanilton.net/web-test/todos/")
+input_element = page.get_by_placeholder("What needs to be done?")
+input_element.fill("tarefa1")
+input_element.press("Enter")
+input_element.fill("tarefa2")
+input_element.press("Enter")
+input_element.fill("tarefa3")
+input_element.press("Enter")
+page.get_by_role("listitem").filter(has_text="tarefa1").get_by_role("checkbox").check()
+page.get_by_role("link", name="Completed").click()
+expect(page.get_by_role("listitem").filter(has_text="tarefa1")).to_be_visible()

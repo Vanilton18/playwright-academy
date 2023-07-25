@@ -1,0 +1,12 @@
+# Dockerfile_dep
+FROM mcr.microsoft.com/playwright/python:v1.36.0-jammy as playwright_base_image
+LABEL authors="Vanilton Pinheiro"
+
+ENV APP_PATH /usr/src/app
+RUN mkdir $APP_PATH
+WORKDIR $APP_PATH
+
+COPY ./requirements.txt $APP_PATH
+
+RUN python -m pip install --upgrade pip
+RUN pip install -r requirements.txt

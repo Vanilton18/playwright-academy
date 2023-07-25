@@ -1,0 +1,21 @@
+stages:
+  - lint
+  - e2e
+
+flake8:
+  stage: lint
+  image: registry.gitlab.com/pipeline-components/flake8:latest
+  script:
+    - flake8 --verbose --statistics --show-source
+
+chrome:
+  stage: e2e
+  image: mcr.microsoft.com/playwright/python:v1.36.0-jammy
+  script:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+    - pytest test -s -v --junitxml=test-results.xml
+  artifacts:
+    when: always
+    reports:
+      junit: test-results.xml
