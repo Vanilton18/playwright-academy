@@ -24,4 +24,4 @@ jobs:
         run: flake8 --verbose --statistics --show-source
 
       - name: Run your tests Chrome
-        run: pytest -s -v -r test --junitxml=test-results.xml
+        run: pytest test -s -v --junitxml=test-results.xml
