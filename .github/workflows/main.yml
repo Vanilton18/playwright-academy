@@ -25,3 +25,19 @@ jobs:
 
       - name: Run your tests Chrome
         run: pytest test -s -v --junitxml=test-results.xml
+
+      - name: Upload test results chrome
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Results
+          path: test-results.xml
+
+
+      - name: Surface failing tests chrome
+        if: always()
+        uses: pmeier/pytest-results-action@main
+        with:
+          path: test-results.xml
+          summary: true
+          display-options: fEX
+          fail-on-empty: true
