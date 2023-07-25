@@ -14,8 +14,32 @@ chrome:
   script:
     - python -m pip install --upgrade pip
     - pip install -r requirements.txt
-    - pytest test -s -v --junitxml=test-results.xml
+    - pytest  test -s -v --junitxml=test-results.xml
   artifacts:
     when: always
     reports:
       junit: test-results.xml
+
+firefox:
+  stage: e2e
+  image: mcr.microsoft.com/playwright/python:v1.36.0-jammy
+  script:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+    - pytest --browser firefox test -s -v --junitxml=test-results-ff.xml
+  artifacts:
+    when: always
+    reports:
+      junit: test-results-ff.xml
+
+webkit:
+  stage: e2e
+  image: mcr.microsoft.com/playwright/python:v1.36.0-jammy
+  script:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+    - pytest --browser webkit test -s -v --junitxml=test-results-wb.xml
+  artifacts:
+    when: always
+    reports:
+      junit: test-results-wb.xml
