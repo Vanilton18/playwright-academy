@@ -1,8 +1,11 @@
+import pytest
+
 from pages.pages import AuthPage
 from playwright.sync_api import Page
 
 
 class TestAuth:
+
 
     def test_login_valid(self, page: Page):
         auth = AuthPage(page)
@@ -17,14 +20,27 @@ class TestAuth:
         auth.login("admiasd", "admi")
         auth.check_login_fail()
 
-    def test_login_invalid2(self, page: Page):
+    @pytest.mark.skip
+    def test_login_invalid2(self, setup_tear_down):
+        page = setup_tear_down
         auth = AuthPage(page)
         auth.navigate()
         auth.login("admiasd", "admi")
         auth.check_login_fail()
 
-    def test_login_invalid3(self, page: Page):
+    @pytest.mark.skip
+    def test_login_invalid3(self, setup_tear_down):
+        page = setup_tear_down
         auth = AuthPage(page)
         auth.navigate()
         auth.login("admiasd", "admi")
         auth.check_login_fail()
+
+    @pytest.mark.skip
+    def test_login_invalid4(self, setup_tear_down):
+        page = setup_tear_down
+        auth = AuthPage(page)
+        auth.navigate()
+        auth.login("admiasd", "admi")
+        auth.check_login_fail()
+        

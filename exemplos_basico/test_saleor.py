@@ -1,12 +1,12 @@
 from playwright.sync_api import sync_playwright, expect
-
+import os
 
 def test_saleor_auth():
     playwright = sync_playwright().start()
     browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context(storage_state="storage.json")
+    context = browser.new_context()
     page = context.new_page()
-    page.goto("https://demo.saleor.io/dashboard/")
+    page.goto("http://localhost:9000/dashboard/")
     playwright.selectors.set_test_id_attribute("data-test-id")
     # email = page.get_by_test_id('email')
     # email.fill('admin@example.com')

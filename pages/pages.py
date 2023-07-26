@@ -18,7 +18,7 @@ class AuthPage:
         self.page = page
 
     def navigate(self):
-        self.page.goto("https://demo.saleor.io/dashboard/")
+        self.page.goto("/dashboard/")
 
     def login(self, email, password):
         page = self.page
